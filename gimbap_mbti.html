@@ -6,27 +6,30 @@
 <title>나는 어떤 김밥일까? | 2026 김천김밥축제</title>
 <style>
   :root {
-    --bg-cream: #fffaf4;
-    --bg-peach: #ffe7da;
-    --bg-mint: #dcf6ea;
-    --card: rgba(255, 255, 255, 0.9);
-    --line: #f2d3c4;
-    --text: #4b332b;
-    --muted: #8d7368;
-    --primary: #ff8f6b;
-    --primary-deep: #f36d4a;
-    --accent: #6fc9a8;
-    --accent-soft: #eefaf4;
-    --shadow: 0 18px 40px rgba(230, 150, 119, 0.18);
+    --bg-cream: #f8fff5;
+    --bg-peach: #e9ffd8;
+    --bg-pink: #eefbe8;
+    --bg-mint: #d9f7cc;
+    --card: rgba(255, 255, 255, 0.94);
+    --line: #d4efc3;
+    --text: #27412c;
+    --muted: #66816c;
+    --primary: #8ddf67;
+    --primary-deep: #5fb44d;
+    --accent: #7ed9a8;
+    --accent-soft: #effcf2;
+    --yellow: #f1ff9b;
+    --shadow: 0 20px 44px rgba(117, 177, 97, 0.18);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Trebuchet MS', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     background:
-      radial-gradient(circle at top left, rgba(255, 223, 186, 0.9), transparent 28%),
-      radial-gradient(circle at top right, rgba(222, 245, 233, 0.95), transparent 24%),
-      linear-gradient(180deg, #fff8f0 0%, #fffdf9 52%, #fff2ea 100%);
+      radial-gradient(circle at top left, rgba(229, 255, 187, 0.9), transparent 28%),
+      radial-gradient(circle at top right, rgba(211, 247, 220, 0.96), transparent 24%),
+      radial-gradient(circle at 50% 100%, rgba(228, 255, 214, 0.88), transparent 26%),
+      linear-gradient(180deg, #f5fff0 0%, #fbfff8 48%, #edfbe8 100%);
     color: var(--text);
     min-height: 100vh;
     display: flex;
@@ -50,6 +53,35 @@
   }
   body::before { top: 72px; left: -42px; }
   body::after { right: -30px; bottom: 88px; }
+  body > .bg-orb,
+  body > .bg-orb-2 {
+    position: fixed;
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.65;
+  }
+  .wrap::before,
+  .wrap::after {
+    content: '';
+    position: absolute;
+    width: 82px;
+    height: 82px;
+    border-radius: 24px;
+    border: 2px dashed rgba(135, 205, 108, 0.3);
+    pointer-events: none;
+  }
+  .wrap::before {
+    top: 24px;
+    right: -10px;
+    transform: rotate(12deg);
+  }
+  .wrap::after {
+    bottom: 90px;
+    left: -18px;
+    transform: rotate(-10deg);
+    border-color: rgba(126, 217, 168, 0.35);
+  }
   .wrap {
     max-width: 560px;
     width: 100%;
@@ -60,8 +92,8 @@
   .screen.active {
     display: block;
     background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.95);
-    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.98);
+    border-radius: 36px;
     padding: 1.8rem;
     box-shadow: var(--shadow);
     backdrop-filter: blur(10px);
@@ -74,8 +106,17 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 12% 15%, rgba(255, 206, 181, 0.45), transparent 18%),
-      radial-gradient(circle at 88% 10%, rgba(194, 239, 219, 0.42), transparent 18%);
+      radial-gradient(circle at 12% 15%, rgba(205, 248, 165, 0.34), transparent 18%),
+      radial-gradient(circle at 88% 10%, rgba(175, 239, 198, 0.38), transparent 18%),
+      radial-gradient(circle at 50% 100%, rgba(220, 255, 170, 0.18), transparent 16%);
+    pointer-events: none;
+  }
+  .screen.active::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 2px dashed rgba(182, 228, 157, 0.34);
+    border-radius: 28px;
     pointer-events: none;
   }
   .screen.active > * {
@@ -86,45 +127,110 @@
   /* intro */
   .intro-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #e8faf2, #fff7dc);
-    color: #348368;
+    background: linear-gradient(135deg, #efffe7, #f6ffd0);
+    color: #4b9250;
     font-size: 12px;
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     margin-bottom: 1.25rem;
     font-weight: 700;
     letter-spacing: 0.04em;
-    border: 1px solid #d6f0e4;
-    box-shadow: 0 8px 16px rgba(111, 201, 168, 0.14);
+    border: 1px solid #d8efc9;
+    box-shadow: 0 8px 16px rgba(125, 197, 109, 0.14);
   }
   .intro-title {
     font-size: clamp(2rem, 6vw, 2.7rem);
     font-weight: 800;
     color: var(--text);
     line-height: 1.2;
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.55rem;
+    text-align: center;
+  }
+  .intro-badge {
+    display: inline-block;
+  }
+  .intro-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0 auto 0.9rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: #f4ffd6;
+    color: #64842a;
+    font-size: 12px;
+    font-weight: 800;
+    border: 1px solid #d6f29d;
+    box-shadow: 0 10px 18px rgba(177, 228, 97, 0.22);
+  }
+  .intro-hero {
+    display: flex;
+    justify-content: center;
+    margin: 0.4rem 0 1rem;
+  }
+  .intro-hero-frame {
+    position: relative;
+    width: min(100%, 290px);
+    padding: 1rem 1rem 0.7rem;
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at top right, rgba(212, 255, 182, 0.72), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #f3ffe9 100%);
+    border: 1px solid #dff2ce;
+    box-shadow: 0 18px 30px rgba(132, 198, 103, 0.18);
+    transform: rotate(-2deg);
+  }
+  .intro-hero-frame::before,
+  .intro-hero-frame::after {
+    position: absolute;
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+  .intro-hero-frame::before {
+    content: '✨';
+    top: 10px;
+    left: 14px;
+  }
+  .intro-hero-frame::after {
+    content: '🍙';
+    right: 14px;
+    bottom: 14px;
+  }
+  .intro-hero-frame img {
+    display: block;
+    width: 100%;
+    border-radius: 24px;
+    filter: drop-shadow(0 16px 16px rgba(61, 44, 35, 0.14));
+  }
+  .intro-mascot-note {
+    margin-top: 0.65rem;
+    text-align: center;
+    font-size: 12px;
+    color: #6f8f68;
+    font-weight: 700;
   }
   .intro-sub {
     font-size: 0.98rem;
     color: var(--muted);
     line-height: 1.85;
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.35rem;
+    text-align: center;
   }
-  .deco-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .deco-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
   .deco-pill {
     font-size: 11px;
     padding: 0.5rem 0.85rem;
     border-radius: 999px;
     background: #fff;
-    color: #9a6d5b;
-    border: 1px solid #ffe0d0;
-    box-shadow: 0 10px 18px rgba(255, 167, 138, 0.12);
+    color: #5f8760;
+    border: 1px solid #d7efca;
+    box-shadow: 0 10px 18px rgba(155, 216, 127, 0.12);
     transform: rotate(-1.5deg);
   }
   .deco-pill:nth-child(even) {
-    background: #f2fbf6;
-    border-color: #d7f0e4;
-    color: #4b8f75;
+    background: #fffde8;
+    border-color: #e6efba;
+    color: #8b8d42;
     transform: rotate(1.5deg);
   }
   .start-btn,
@@ -139,22 +245,22 @@
     font-family: inherit;
     width: 100%;
     font-weight: 700;
-    box-shadow: 0 12px 22px rgba(243, 109, 74, 0.24);
+    box-shadow: 0 12px 22px rgba(96, 180, 77, 0.26);
     transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
   }
   .start-btn:hover,
   .copy-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 24px rgba(243, 109, 74, 0.3);
+    box-shadow: 0 16px 24px rgba(96, 180, 77, 0.32);
     filter: saturate(1.03);
   }
-  .intro-note { font-size: 12px; color: #b58f80; text-align: center; margin-top: 1rem; }
+  .intro-note { font-size: 12px; color: #b58f80; text-align: center; margin-top: 1rem; font-weight: 700; }
 
   /* quiz */
   .progress-wrap { margin-bottom: 2rem; }
   .progress-bar {
     height: 10px;
-    background: #ffe5d7;
+    background: #e5f7d8;
     border-radius: 999px;
     overflow: hidden;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -162,7 +268,7 @@
   .progress-fill {
     height: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, #ffb482 0%, #ff8f6b 55%, #6fc9a8 100%);
+    background: linear-gradient(90deg, #caf78a 0%, #8ddf67 55%, #78d8a4 100%);
     transition: width 0.4s ease;
   }
   .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #b58f80; margin-top: 8px; font-weight: 700; }
@@ -173,11 +279,12 @@
     line-height: 1.5;
     margin-bottom: 1.75rem;
     min-height: 4.2rem;
+    text-align: center;
   }
   .options { display: flex; flex-direction: column; gap: 12px; }
   .opt-btn {
     background: rgba(255, 255, 255, 0.95);
-    border: 1.5px solid #ffe0d0;
+    border: 1.5px solid #dff1d1;
     border-radius: 20px;
     padding: 1.1rem 1.2rem;
     text-align: left;
@@ -187,22 +294,22 @@
     line-height: 1.65;
     font-family: inherit;
     font-weight: 700;
-    box-shadow: 0 10px 18px rgba(255, 177, 142, 0.1);
+    box-shadow: 0 10px 18px rgba(152, 212, 121, 0.1);
     transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease, box-shadow 0.16s ease, color 0.16s ease;
   }
   .opt-btn:hover {
     transform: translateY(-2px);
-    border-color: #ffc2a5;
-    background: linear-gradient(180deg, #fff8f3 0%, #fff2ea 100%);
-    color: #5d4135;
-    box-shadow: 0 14px 22px rgba(255, 177, 142, 0.18);
+    border-color: #addf95;
+    background: linear-gradient(180deg, #fcfff8 0%, #f1ffe9 100%);
+    color: #38543a;
+    box-shadow: 0 14px 22px rgba(152, 212, 121, 0.18);
   }
 
   /* result */
   .result-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,249,244,0.95) 100%);
-    border: 1px solid #ffe3d5;
-    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(244,255,237,0.96) 100%);
+    border: 1px solid #ddf2cd;
+    border-radius: 32px;
     padding: 2rem 1.75rem;
     margin-bottom: 1rem;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
@@ -216,46 +323,134 @@
     height: 86px;
     margin-bottom: 1rem;
     border-radius: 26px;
-    background: linear-gradient(135deg, #fff6d9, #ffe7da);
-    box-shadow: 0 12px 22px rgba(255, 184, 124, 0.18);
+    background: linear-gradient(135deg, #f9ffd6, #dcffd5);
+    box-shadow: 0 12px 22px rgba(148, 210, 110, 0.18);
   }
   .result-mbti-row { display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem; }
   .result-type {
     font-size: 13px;
     font-weight: 800;
-    color: #348368;
-    background: linear-gradient(180deg, #effcf5, #e0f6ec);
+    color: #4b9250;
+    background: linear-gradient(180deg, #f3ffe9, #e1f8d9);
     display: inline-block;
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     letter-spacing: 0.06em;
-    border: 1px solid #d6f0e4;
+    border: 1px solid #d4efc7;
   }
   .result-name { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
+  .result-catchphrase {
+    display: inline-block;
+    margin: 0 auto 0.95rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: #f4ffd8;
+    color: #6c8b2e;
+    font-size: 0.9rem;
+    font-weight: 800;
+    border: 1px solid #d3ef9e;
+  }
   .result-desc { font-size: 0.97rem; color: #70584f; line-height: 1.85; margin-bottom: 1.25rem; }
+  .result-card,
+  .result-name,
+  .result-catchphrase,
+  .result-desc,
+  .result-mbti-row,
+  .share-label,
+  .footer-note { text-align: center; }
+  .result-mbti-row { justify-content: center; }
   .result-traits { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.25rem; }
   .trait {
     font-size: 12px;
     padding: 0.45rem 0.75rem;
     border-radius: 999px;
-    background: #fff4ec;
-    color: #946856;
-    border: 1px solid #ffdccc;
+    background: #f5ffef;
+    color: #63805f;
+    border: 1px solid #d8efca;
     font-weight: 700;
   }
   .result-activity {
     font-size: 0.92rem;
     color: #70584f;
     padding-top: 1rem;
-    border-top: 1px dashed #f0cdbd;
+    border-top: 1px dashed #d2ebc0;
     line-height: 1.7;
   }
   .result-activity strong { color: var(--primary-deep); }
+  .result-grid {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1rem;
+    text-align: left;
+  }
+  .result-section {
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid #dcefd0;
+    border-radius: 22px;
+    padding: 1rem 1rem 0.95rem;
+  }
+  .section-title {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 12px;
+    font-weight: 800;
+    color: #68a24d;
+    letter-spacing: 0.03em;
+  }
+  .section-body {
+    color: #735b52;
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+  .activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-top: 0.2rem;
+  }
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: #735b52;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .activity-item::before {
+    content: '🍙';
+    flex: none;
+  }
+  .compatibility-box {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .compatibility-line {
+    color: #735b52;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+  .compatibility-line strong {
+    color: #4b9250;
+  }
+  .hashtag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .hashtag {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: #f3ffe9;
+    border: 1px solid #d8efc9;
+    color: #66805f;
+    font-size: 12px;
+    font-weight: 700;
+  }
   .btn-row { display: flex; gap: 8px; margin-top: 1.25rem; }
   .copy-btn { flex: 1; font-size: 0.92rem; }
   .retry-btn {
     background: #fff;
-    border: 1.5px solid #ffd8c6;
+    border: 1.5px solid #d8efc9;
     border-radius: 18px;
     padding: 0.85rem 1.15rem;
     font-size: 0.92rem;
@@ -264,13 +459,13 @@
     font-family: inherit;
     font-weight: 700;
     flex: 1;
-    box-shadow: 0 10px 18px rgba(255, 196, 171, 0.12);
+    box-shadow: 0 10px 18px rgba(155, 214, 126, 0.12);
     transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
   }
   .retry-btn:hover {
     transform: translateY(-2px);
-    border-color: #ffb999;
-    background: #fff8f4;
+    border-color: #9cd680;
+    background: #f7fff1;
   }
   .share-label { font-size: 12px; color: #b58f80; margin-bottom: 8px; font-weight: 700; }
   .footer-note { font-size: 12px; color: #c1a69a; text-align: center; margin-top: 1.5rem; }
@@ -284,6 +479,7 @@
     body { padding: 1rem 0.8rem 2rem; }
     .screen.active { border-radius: 24px; padding: 1.3rem; }
     .intro-title { font-size: 2rem; }
+    .intro-hero-frame { width: min(100%, 230px); transform: rotate(0deg); }
     .q-text { font-size: 1.2rem; min-height: 3.5rem; }
     .btn-row { flex-direction: column; }
     .result-emoji { width: 76px; height: 76px; font-size: 3.4rem; }
@@ -296,7 +492,14 @@
   <!-- 인트로 -->
   <div class="screen active" id="intro">
     <span class="intro-badge">2026 김천김밥축제</span>
+    <div class="intro-kicker">김밥 캐릭터 테스트 · 귀여움 가득</div>
     <div class="intro-title">나는 어떤<br>김밥일까? 🍱</div>
+    <div class="intro-hero">
+      <div class="intro-hero-frame">
+        <img src="assets/gimbap-mascot-cutout.png" alt="김밥 마스코트 캐릭터">
+        <div class="intro-mascot-note">축제 마스코트가 결과를 알려줘요!</div>
+      </div>
+    </div>
     <div class="intro-sub">12가지 질문으로 알아보는 나만의 김밥 유형.<br>16가지 김밥 MBTI 중 당신의 것을 찾아보세요.</div>
     <div class="deco-row">
       <span class="deco-pill">참치김밥</span>
@@ -332,10 +535,44 @@
         <span class="result-type" id="res-mbti"></span>
       </div>
       <div class="result-name" id="res-name"></div>
+      <div class="result-catchphrase" id="res-catchphrase"></div>
       <div class="result-desc" id="res-desc"></div>
       <div class="result-traits" id="res-traits"></div>
       <div class="result-activity">
         <strong>축제 추천 활동:</strong> <span id="res-activity"></span>
+      </div>
+      <div class="result-grid">
+        <div class="result-section">
+          <span class="section-title">축제에서의 나</span>
+          <div class="section-body" id="res-festival-style"></div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">내가 좋아할 김밥 취향</span>
+          <div class="section-body" id="res-gimbap-taste"></div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">친구들이 보는 나</span>
+          <div class="section-body" id="res-friends-view"></div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">스트레스 받으면</span>
+          <div class="section-body" id="res-when-stressed"></div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">잘 맞는 조합</span>
+          <div class="compatibility-box">
+            <div class="compatibility-line"><strong>베스트 궁합</strong> <span id="res-best-match"></span></div>
+            <div class="compatibility-line"><strong>의외의 반대 매력</strong> <span id="res-opposite-match"></span></div>
+          </div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">추천 체험</span>
+          <div class="activity-list" id="res-activities"></div>
+        </div>
+        <div class="result-section">
+          <span class="section-title">해시태그</span>
+          <div class="hashtag-row" id="res-hashtags"></div>
+        </div>
       </div>
     </div>
     <div class="share-label">친구에게 공유해보세요</div>
@@ -400,29 +637,30 @@ const questions = [
   ]}
 ];
 
-const types = {
-  ESTJ: { name: "정통 참치김밥", emoji: "🐟", desc: "믿을 수 있는 클래식. 어디서나 환영받고, 실망시키는 법이 없는 든든한 존재입니다. 계획적이고 책임감 강한 당신과 꼭 닮았어요.", traits: ["책임감", "계획적", "신뢰감", "리더십"], activity: "김밥 토너먼트 심판 역할" },
-  ESTP: { name: "매운 낙지김밥", emoji: "🌶️", desc: "자극적이고 강렬한 존재감. 현장을 즐기며 에너지를 폭발시킵니다. 지루함을 모르는 즉흥파.", traits: ["즉흥적", "에너지 넘침", "도전적", "현실적"], activity: "김밥 블라인드 테이스팅 챌린지" },
-  ESFJ: { name: "계란 치즈 김밥", emoji: "🧀", desc: "부드럽고 따뜻한 매력. 누구에게나 잘 어울리고 주변을 편안하게 만드는 감성파입니다.", traits: ["배려심", "친화력", "따뜻함", "성실함"], activity: "김밥 나눔 이벤트 진행" },
-  ESFP: { name: "스팸 마요 김밥", emoji: "✨", desc: "화려하고 유쾌한 분위기 메이커. 어디서든 주목받고 즐거움을 만들어냅니다.", traits: ["유쾌함", "분위기 메이커", "화려함", "즉흥성"], activity: "김밥 만들기 쇼케이스 참여" },
-  ENTJ: { name: "스테이크 김밥", emoji: "🥩", desc: "고급스럽고 강렬한 리더. 기존의 틀을 깨고 새로운 기준을 만드는 혁신가입니다.", traits: ["리더십", "혁신", "추진력", "전략적"], activity: "김밥 레시피 경연 대회 주최" },
-  ENTP: { name: "아보카도 연어 김밥", emoji: "🥑", desc: "트렌디하고 창의적. 새로운 아이디어를 쏟아내며 예상치 못한 맛의 조합을 즐깁니다.", traits: ["창의적", "트렌디", "아이디어뱅크", "도전적"], activity: "이색 김밥 레시피 아이디어 제안" },
-  ENFJ: { name: "불고기 김밥", emoji: "🥓", desc: "풍부하고 깊은 맛처럼, 사람들을 끌어당기는 카리스마. 관계를 소중히 여기는 따뜻한 리더.", traits: ["카리스마", "공감력", "리더십", "따뜻함"], activity: "김밥 만들기 그룹 체험 진행" },
-  ENFP: { name: "크림치즈 딸기 김밥", emoji: "🍓", desc: "예상을 뒤엎는 달콤한 반전 매력. 자유롭고 열정적이며 새로운 경험을 두려워하지 않아요.", traits: ["자유로움", "열정", "반전 매력", "창의적"], activity: "이색 재료 김밥 체험존" },
-  ISTJ: { name: "기본 야채 김밥", emoji: "🥗", desc: "묵묵히 제 역할을 다하는 신뢰의 상징. 화려하진 않지만 언제나 옳은 선택입니다.", traits: ["성실함", "신중함", "꼼꼼함", "책임감"], activity: "김밥 완성도 평가단" },
-  ISTP: { name: "김치 참치 김밥", emoji: "🌿", desc: "독립적이고 실용적. 겉은 심플해 보이지만 속은 복잡하고 깊은 맛을 지닌 현실주의자.", traits: ["독립적", "실용적", "과묵함", "분석적"], activity: "김밥 재료 분류 및 조합 실험" },
-  ISFJ: { name: "오이 당근 김밥", emoji: "🥕", desc: "섬세하고 배려 깊은 조용한 지지자. 건강하고 균형 잡힌 삶을 사랑하는 성실파.", traits: ["배려", "섬세함", "성실함", "안정적"], activity: "어린이 김밥 만들기 도우미" },
-  ISFP: { name: "화이트 참치 김밥", emoji: "🤍", desc: "조용하지만 감각적. 자신만의 뚜렷한 미감을 가진 예술가형 인간입니다.", traits: ["감각적", "자유로운 영혼", "예술적", "섬세함"], activity: "김밥 비주얼 플레이팅 체험" },
-  INTJ: { name: "흑미 현미 김밥", emoji: "🖤", desc: "남다른 신념과 비전을 가진 전략가. 겉은 담백하지만 내면은 깊고 독창적입니다.", traits: ["전략적", "독창적", "완벽주의", "비전"], activity: "김밥 축제 기획 아이디어 제안" },
-  INTP: { name: "두부 견과류 김밥", emoji: "🧠", desc: "예상치 못한 재료의 조합처럼, 독자적인 사고방식으로 새로운 가능성을 탐구하는 분석가.", traits: ["분석적", "탐구적", "독창적", "논리적"], activity: "김밥 성분 분석 & 레시피 연구" },
-  INFJ: { name: "나물 도토리 김밥", emoji: "🌱", desc: "깊은 내면과 강한 신념을 가진 희귀한 존재. 의미 있는 것에만 마음을 여는 이상주의자.", traits: ["통찰력", "이상주의", "진정성", "섬세함"], activity: "지역 식재료 스토리텔링 참여" },
-  INFP: { name: "단호박 고구마 김밥", emoji: "🍠", desc: "달콤하고 포근한 감성파. 자신만의 세계관이 뚜렷하고, 진심 어린 관계를 소중히 여깁니다.", traits: ["감성적", "공감력", "창의적", "진정성"], activity: "김밥 스토리 포토 부스" }
-};
-
+let types = {};
+let dataReady = false;
 let scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
 let current = 0;
 
+async function loadMbtiData() {
+  try {
+    const response = await fetch('./mbti-data.json');
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    types = await response.json();
+    dataReady = true;
+  } catch (error) {
+    console.error('MBTI data load failed:', error);
+    alert('MBTI 데이터를 불러오지 못했어요. 로컬 서버에서 다시 열어주세요.');
+  }
+}
+
 function startTest() {
+  if (!dataReady) {
+    alert('MBTI 데이터를 불러오는 중이에요. 잠시 후 다시 눌러주세요.');
+    return;
+  }
   document.getElementById('intro').classList.remove('active');
   document.getElementById('quiz').classList.add('active');
   showQ();
@@ -465,10 +703,21 @@ function showResult() {
   document.getElementById('res-emoji').textContent = r.emoji;
   document.getElementById('res-mbti').textContent = mbti;
   document.getElementById('res-name').textContent = r.name;
-  document.getElementById('res-desc').textContent = r.desc;
-  document.getElementById('res-activity').textContent = r.activity;
+  document.getElementById('res-catchphrase').textContent = r.catchphrase;
+  document.getElementById('res-desc').textContent = r.description;
+  document.getElementById('res-activity').textContent = r.activities.join(' · ');
+  document.getElementById('res-festival-style').textContent = r.festivalStyle;
+  document.getElementById('res-gimbap-taste').textContent = r.gimbapTaste;
+  document.getElementById('res-friends-view').textContent = r.friendsView;
+  document.getElementById('res-when-stressed').textContent = r.whenStressed;
+  document.getElementById('res-best-match').textContent = r.compatibility.best;
+  document.getElementById('res-opposite-match').textContent = r.compatibility.opposite;
   const traitsEl = document.getElementById('res-traits');
-  traitsEl.innerHTML = r.traits.map(t => `<span class="trait">${t}</span>`).join('');
+  traitsEl.innerHTML = r.hashtags.slice(0, 4).map(t => `<span class="trait">${t.replace('#', '')}</span>`).join('');
+  const activitiesEl = document.getElementById('res-activities');
+  activitiesEl.innerHTML = r.activities.map(activity => `<div class="activity-item">${activity}</div>`).join('');
+  const hashtagsEl = document.getElementById('res-hashtags');
+  hashtagsEl.innerHTML = r.hashtags.map(tag => `<span class="hashtag">${tag}</span>`).join('');
   document.getElementById('quiz').classList.remove('active');
   document.getElementById('result').classList.add('active');
 }
@@ -490,6 +739,8 @@ function resetTest() {
   document.getElementById('result').classList.remove('active');
   document.getElementById('intro').classList.add('active');
 }
+
+loadMbtiData();
 </script>
 </body>
 </html>
