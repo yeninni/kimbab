@@ -25,11 +25,12 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Trebuchet MS', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(229, 255, 187, 0.9), transparent 28%),
-      radial-gradient(circle at top right, rgba(211, 247, 220, 0.96), transparent 24%),
-      radial-gradient(circle at 50% 100%, rgba(228, 255, 214, 0.88), transparent 26%),
-      linear-gradient(180deg, #f5fff0 0%, #fbfff8 48%, #edfbe8 100%);
+    background-color: #FFF0F5;
+    background-image:
+      radial-gradient(circle at 15% 15%, #FFD16640 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, #4CC9F040 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, #C77DFF25 0%, transparent 55%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='none'/%3E%3Crect x='0' y='0' width='30' height='30' fill='%23FF8FAB' opacity='0.07'/%3E%3Crect x='30' y='30' width='30' height='30' fill='%23FF8FAB' opacity='0.07'/%3E%3Ccircle cx='15' cy='45' r='2' fill='%23FFD166' opacity='0.5'/%3E%3Ccircle cx='45' cy='15' r='2' fill='%234CC9F0' opacity='0.5'/%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23C77DFF' opacity='0.4'/%3E%3C/svg%3E");
     color: var(--text);
     min-height: 100vh;
     display: flex;
@@ -41,7 +42,7 @@
   }
   body::before,
   body::after {
-    content: '';
+    content: none;
     position: fixed;
     width: 180px;
     height: 180px;
@@ -53,17 +54,25 @@
   }
   body::before { top: 72px; left: -42px; }
   body::after { right: -30px; bottom: 88px; }
-  body > .bg-orb,
-  body > .bg-orb-2 {
+  .deco-circle {
     position: fixed;
     border-radius: 999px;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.65;
+    animation: float 6s ease-in-out infinite;
+  }
+  .deco-circle:nth-child(1) { width: 80px; height: 80px; background: #FFD16650; top: 8%; left: 5%; animation-delay: 0s; }
+  .deco-circle:nth-child(2) { width: 50px; height: 50px; background: #4CC9F050; top: 20%; right: 8%; animation-delay: 1.5s; }
+  .deco-circle:nth-child(3) { width: 65px; height: 65px; background: #FF8FAB40; bottom: 25%; left: 3%; animation-delay: 3s; }
+  .deco-circle:nth-child(4) { width: 40px; height: 40px; background: #C77DFF40; bottom: 15%; right: 5%; animation-delay: 0.8s; }
+  .deco-circle:nth-child(5) { width: 30px; height: 30px; background: #06D6A050; top: 55%; left: 7%; animation-delay: 2.2s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(8deg); }
   }
   .wrap::before,
   .wrap::after {
-    content: '';
+    content: none;
     position: absolute;
     width: 82px;
     height: 82px;
@@ -92,10 +101,13 @@
   .screen.active {
     display: block;
     background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.98);
+    border: 3px solid #ffb7cb;
     border-radius: 36px;
     padding: 1.8rem;
-    box-shadow: var(--shadow);
+    box-shadow:
+      0 0 0 7px rgba(255, 209, 102, 0.92),
+      0 18px 38px rgba(255, 143, 171, 0.22),
+      0 24px 54px rgba(117, 177, 97, 0.16);
     backdrop-filter: blur(10px);
     animation: popIn 0.45s ease;
     position: relative;
@@ -115,9 +127,35 @@
     content: '';
     position: absolute;
     inset: 14px;
-    border: 2px dashed rgba(182, 228, 157, 0.34);
+    border: 2px dashed rgba(255, 173, 196, 0.58);
     border-radius: 28px;
     pointer-events: none;
+  }
+  .screen-shell::before,
+  .screen-shell::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 999px;
+  }
+  .screen-shell::before {
+    width: 88px;
+    height: 20px;
+    top: -10px;
+    left: 22px;
+    background: linear-gradient(90deg, #ff8fab, #ffd166);
+    box-shadow: 0 6px 14px rgba(255, 143, 171, 0.24);
+    transform: rotate(-3deg);
+  }
+  .screen-shell::after {
+    width: 58px;
+    height: 18px;
+    right: 26px;
+    bottom: -8px;
+    background: linear-gradient(90deg, #4cc9f0, #06d6a0);
+    box-shadow: 0 6px 14px rgba(76, 201, 240, 0.2);
+    transform: rotate(4deg);
   }
   .screen.active > * {
     position: relative;
@@ -351,10 +389,21 @@
     border: 1px solid #d3ef9e;
   }
   .result-desc { font-size: 0.97rem; color: #70584f; line-height: 1.85; margin-bottom: 1.25rem; }
+  .result-situation {
+    margin: 0 auto 1.25rem;
+    padding: 0.95rem 1rem;
+    border-radius: 20px;
+    background: #f7ffef;
+    border: 1px solid #d8efca;
+    color: #55704f;
+    font-size: 0.94rem;
+    line-height: 1.8;
+  }
   .result-card,
   .result-name,
   .result-catchphrase,
   .result-desc,
+  .result-situation,
   .result-mbti-row,
   .share-label,
   .footer-note { text-align: center; }
@@ -487,7 +536,12 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="deco-circle"></div>
+<div class="deco-circle"></div>
+<div class="deco-circle"></div>
+<div class="deco-circle"></div>
+<div class="deco-circle"></div>
+<div class="wrap screen-shell">
 
   <!-- 인트로 -->
   <div class="screen active" id="intro">
@@ -537,6 +591,7 @@
       <div class="result-name" id="res-name"></div>
       <div class="result-catchphrase" id="res-catchphrase"></div>
       <div class="result-desc" id="res-desc"></div>
+      <div class="result-situation" id="res-situation"></div>
       <div class="result-traits" id="res-traits"></div>
       <div class="result-activity">
         <strong>축제 추천 활동:</strong> <span id="res-activity"></span>
@@ -705,6 +760,7 @@ function showResult() {
   document.getElementById('res-name').textContent = r.name;
   document.getElementById('res-catchphrase').textContent = r.catchphrase;
   document.getElementById('res-desc').textContent = r.description;
+  document.getElementById('res-situation').textContent = r.situation || '';
   document.getElementById('res-activity').textContent = r.activities.join(' · ');
   document.getElementById('res-festival-style').textContent = r.festivalStyle;
   document.getElementById('res-gimbap-taste').textContent = r.gimbapTaste;
