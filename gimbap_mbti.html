@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>나는 어떤 김밥일까? | 2026 김천김밥축제</title>
 <style>
+  @font-face {
+    font-family: 'SeoulAlrim';
+    src: url('./assets/fonts/SeoulAlrim-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'SeoulAlrim';
+    src: url('./assets/fonts/SeoulAlrim-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'SeoulAlrim';
+    src: url('./assets/fonts/SeoulAlrim-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'SeoulAlrim';
+    src: url('./assets/fonts/SeoulAlrim-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+  }
+
   :root {
     --bg-cream: #f8fff5;
     --bg-peach: #e9ffd8;
@@ -24,7 +49,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Trebuchet MS', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-family: 'SeoulAlrim', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     background-color: #FFF0F5;
     background-image:
       radial-gradient(circle at 15% 15%, #FFD16640 0%, transparent 40%),
@@ -177,6 +202,7 @@
     box-shadow: 0 8px 16px rgba(125, 197, 109, 0.14);
   }
   .intro-title {
+    font-family: 'SeoulAlrim', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     font-size: clamp(2rem, 6vw, 2.7rem);
     font-weight: 800;
     color: var(--text);
@@ -311,6 +337,7 @@
   }
   .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #b58f80; margin-top: 8px; font-weight: 700; }
   .q-text {
+    font-family: 'SeoulAlrim', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     font-size: 1.35rem;
     font-weight: 800;
     color: var(--text);
@@ -376,7 +403,13 @@
     letter-spacing: 0.06em;
     border: 1px solid #d4efc7;
   }
-  .result-name { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 0.75rem; }
+  .result-name {
+    font-family: 'SeoulAlrim', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
   .result-catchphrase {
     display: inline-block;
     margin: 0 auto 0.95rem;
